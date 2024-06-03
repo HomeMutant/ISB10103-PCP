@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class SleepLengthCalculator {
-
     private int wakeUpHour;
     private int wakeUpMinute;
 
@@ -37,44 +36,60 @@ public class SleepLengthCalculator {
         this.wakeUpMinute = wakeUpMinute;
     }
 
+    // Splits a time string into hours and minutes
+    private int[] splitTimeString(String timeString) {
+        String[] timeParts = timeString.split(":");
+        int hour = Integer.parseInt(timeParts[0]);
+        int minute = Integer.parseInt(timeParts[1]);
+        return new int[] { hour, minute };
+    }
+
     // Calculates the time to go to bed based on wake-up time and sleep duration
     public String calculateSleepTime(String wakeUpTime, String sleepDuration) {
-        String[] wakeUpTimeParts = wakeUpTime.split(":");
-        int wakeUpHour = Integer.parseInt(wakeUpTimeParts[0]);
-        int wakeUpMinute = Integer.parseInt(wakeUpTimeParts[1]);
+        try {
+            int[] wakeUpTimeParts = splitTimeString(wakeUpTime);
+            int wakeUpHour = wakeUpTimeParts[0];
+            int wakeUpMinute = wakeUpTimeParts[1];
 
-        String[] sleepDurationParts = sleepDuration.split(":");
-        int sleepHour = Integer.parseInt(sleepDurationParts[0]);
-        int sleepMinute = Integer.parseInt(sleepDurationParts[1]);
+            int[] sleepDurationParts = splitTimeString(sleepDuration);
+            int sleepHour = sleepDurationParts[0];
+            int sleepMinute = sleepDurationParts[1];
 
-        int bedTimeHour = (wakeUpHour - sleepHour + 24) % 24;
-        int bedTimeMinute = (wakeUpMinute - sleepMinute + 60) % 60;
+            int bedTimeHour = (wakeUpHour - sleepHour + 24) % 24;
+            int bedTimeMinute = (wakeUpMinute - sleepMinute + 60) % 60;
 
-        if (wakeUpMinute < sleepMinute) {
-            bedTimeHour = (bedTimeHour - 1 + 24) % 24;
+            if (wakeUpMinute < sleepMinute) {
+                bedTimeHour = (bedTimeHour - 1 + 24) % 24;
+            }
+
+            return String.format("%02d:%02d", bedTimeHour, bedTimeMinute);
+        } catch (Exception e) {
+            return "Invalid input. Please enter the time in HH:M format.";
         }
-
-        return String.format("%02d:%02d", bedTimeHour, bedTimeMinute);
     }
 
     // Calculates the wake-up time based on sleep time and sleep duration
     public String calculateWakeUpTime(String sleepTime, String sleepDuration) {
-        String[] sleepTimeParts = sleepTime.split(":");
-        int sleepTimeHour = Integer.parseInt(sleepTimeParts[0]);
-        int sleepTimeMinute = Integer.parseInt(sleepTimeParts[1]);
+        try {
+            int[] sleepTimeParts = splitTimeString(sleepTime);
+            int sleepTimeHour = sleepTimeParts[0];
+            int sleepTimeMinute = sleepTimeParts[1];
 
-        String[] sleepDurationParts = sleepDuration.split(":");
-        int sleepHour = Integer.parseInt(sleepDurationParts[0]);
-        int sleepMinute = Integer.parseInt(sleepDurationParts[1]);
+            int[] sleepDurationParts = splitTimeString(sleepDuration);
+            int sleepHour = sleepDurationParts[0];
+            int sleepMinute = sleepDurationParts[1];
 
-        int wakeUpHour = (sleepTimeHour + sleepHour) % 24;
-        int wakeUpMinute = (sleepTimeMinute + sleepMinute) % 60;
+            int wakeUpHour = (sleepTimeHour + sleepHour) % 24;
+            int wakeUpMinute = (sleepTimeMinute + sleepMinute) % 60;
 
-        if (sleepTimeMinute + sleepMinute >= 60) {
-            wakeUpHour = (wakeUpHour + 1) % 24;
+            if (sleepTimeMinute + sleepMinute >= 60) {
+                wakeUpHour = (wakeUpHour + 1) % 24;
+            }
+
+            return String.format("%02d:%02d", wakeUpHour, wakeUpMinute);
+        } catch (Exception e) {
+            return "Invalid input. Please enter the time in HH:MM format.";
         }
-
-        return String.format("%02d:%02d", wakeUpHour, wakeUpMinute);
     }
 
     // Void method to display the menu
