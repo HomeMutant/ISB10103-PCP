@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
-public class SleepLengthCalculator {
+public class personSleepTracker {
     private int wakeUpHour;
     private int wakeUpMinute;
 
     // Default constructor
-    public SleepLengthCalculator() {
+    public personSleepTracker() {
         this.wakeUpHour = 0;
         this.wakeUpMinute = 0;
     }
 
     // Overloaded constructor
-    public SleepLengthCalculator(int wakeUpHour, int wakeUpMinute) {
+    public personSleepTracker(int wakeUpHour, int wakeUpMinute) {
         this.wakeUpHour = wakeUpHour;
         this.wakeUpMinute = wakeUpMinute;
     }
@@ -108,7 +108,7 @@ public class SleepLengthCalculator {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        SleepLengthCalculator calculator = new SleepLengthCalculator();
+        personSleepTracker calculator = new personSleepTracker();
 
         while (true) {
             calculator.displayMenu();
