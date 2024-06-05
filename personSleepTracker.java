@@ -103,32 +103,40 @@ class personSleepTracker {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         personSleepTracker calculator = new personSleepTracker();
+        boolean running = true;
 
-        while (true) {
+        while (running) {
             calculator.displayMenu();
             String choice = scanner.nextLine();
 
-            if (choice.equals("1")) {
-                System.out.print("Enter time to wake up at (HH:MM): ");
-                String wakeUpTime = scanner.nextLine();
-                System.out.print("Enter sleep duration (HH:MM): ");
-                String sleepDuration = scanner.nextLine();
-                System.out.println("You should sleep at: " + calculator.calculateSleepTime(wakeUpTime, sleepDuration));
-            } else if (choice.equals("2")) {
-                System.out.print("Enter time to sleep at (HH:MM): ");
-                String sleepTime = scanner.nextLine();
-                System.out.print("Enter sleep duration (HH:MM): ");
-                String sleepDuration = scanner.nextLine();
-                System.out
-                        .println("You should wake up at: " + calculator.calculateWakeUpTime(sleepTime, sleepDuration));
-            } else if (choice.equals("3")) {
-                System.out.println("Thank you for using the Sleep Length Calculator!");
-                break;
-            } else {
-                calculator.handleInvalidInput();
+            switch (choice) {
+                case "1": {
+                    System.out.print("Enter time to wake up at (HH:MM): ");
+                    String wakeUpTime = scanner.nextLine();
+                    System.out.print("Enter sleep duration (HH:MM): ");
+                    String sleepDuration = scanner.nextLine();
+                    System.out.println(
+                            "You should sleep at: " + calculator.calculateSleepTime(wakeUpTime, sleepDuration));
+                    break;
+                }
+                case "2": {
+                    System.out.print("Enter time to sleep at (HH:MM): ");
+                    String sleepTime = scanner.nextLine();
+                    System.out.print("Enter sleep duration (HH:MM): ");
+                    String sleepDuration = scanner.nextLine();
+                    System.out.println(
+                            "You should wake up at: " + calculator.calculateWakeUpTime(sleepTime, sleepDuration));
+                    break;
+                }
+                case "3":
+                    System.out.println("Thank you for using the Sleep Length Calculator!");
+                    running = false; // Exit the loop
+                    break;
+                default:
+                    calculator.handleInvalidInput();
+                    break;
             }
         }
-
-        scanner.close();
+        scanner.close(); // Close the scanner outside the loop
     }
 }
