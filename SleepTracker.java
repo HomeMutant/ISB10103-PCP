@@ -153,6 +153,12 @@ public class SleepTracker {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
+        // Create a user using the overloaded constructor
+        personSleepTracker defaultUser = new personSleepTracker(6, 30);
+        defaultUser.setLastBed("22:00");
+        defaultUser.setLastWakeUp("6:30");
+        personsDictionary.put("DefaultUser", defaultUser);
+
         // main loop to keep the application running
         while (running) {
             personSleepTracker user = null;
@@ -162,7 +168,8 @@ public class SleepTracker {
             while (personNames.hasMoreElements()) {
                 String key = personNames.nextElement();
                 System.out.println("- " + key);
-            } // create new username or use existing username
+            }
+            // create new username or use existing username
             System.out.print("Key in a username, a new one will be created if it does not exist: ");
             String username = scanner.nextLine();
             user = personsDictionary.get(username);
