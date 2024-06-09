@@ -29,42 +29,42 @@ class personSleepTracker {
         this.lastWakeUpTime = "Not set";
     }
 
-    // accessor for WakeUpHour
+    // accessor for wakeUpHour
     public int getWakeUpHour() {
         return wakeUpHour;
     }
 
-    // autator for WakeUpHour
+    // autator for wakeUpHour
     public void setWakeUpHour(int wakeUpHour) {
         this.wakeUpHour = wakeUpHour;
     }
 
-    // accessor for WakeUpMinute
+    // accessor for wakeUpMinute
     public int getWakeUpMinute() {
         return wakeUpMinute;
     }
 
-    // mutator for WakeUpMinute
+    // mutator for wakeUpMinute
     public void setWakeUpMinute(int wakeUpMinute) {
         this.wakeUpMinute = wakeUpMinute;
     }
 
-    // accessor for LastBedTime
+    // accessor for lastBedTime
     public String getLastBedTime() {
         return lastBedTime;
     }
 
-    // mutator for LastBedTime
+    // mutator for lastBedTime
     public void setLastBed(String lastBedTime) {
         this.lastBedTime = lastBedTime;
     }
 
-    // accessor for LastWakeUpTime
+    // accessor for lastWakeUpTime
     public String getLastWakeUpTime() {
         return lastWakeUpTime;
     }
 
-    // mutator for LastWakeUpTime
+    // mutator for lastWakeUpTime
     public void setLastWakeUp(String lastWakeUpTime) {
         this.lastWakeUpTime = lastWakeUpTime;
     }
